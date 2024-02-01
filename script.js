@@ -7,7 +7,6 @@ function player(name, score) {
 
 const player1 = new player("John", 13)
 
-
 function gameBoard () {
     const container = document.querySelector("#container")
     const array = [
@@ -18,20 +17,30 @@ function gameBoard () {
     for(let i = 0; i < array.length; i++) {
         const element = array[i]
         for(let i = 1; i < element.length; i++) {
-            const make = document.createElement('button')
-            make.classList = "cell"
-            container.appendChild(make)
-            make.addEventListener("click", () => {
+            const cell = document.createElement('button')
+            cell.classList = "cell"
+            container.appendChild(cell)
+            cell.addEventListener("click", () => {
+                if(player == 0) {
+                    cell.innerHTML = "X"
+                    player = 1
+                    
+                } else {
+                    cell.innerHTML = "0"
+                    player = 0
+                    return(player)
+                }
                 
-              
+                      
             })
+            
         }
     }
     
     return(array)
 }
 
-console.log(gameBoard())
+
 
 
 function game() {
@@ -56,20 +65,23 @@ function game() {
         } else if (array[0][2] != "" && array[0][2] == array [1][1] && array[0][2] == array[2][1]) {
             result = true
         }
-
-
         return(result)
     }
     const player = 0
-    return function switchPlayers() {
+    function switchPlayers() {
         if(player == 0) {
-            document.querySelector("#cell").innerHTML = "X"
+            
             player = 1
+            return(player)
         } else {
-            document.querySelector("#cell").innerHTML = "O"
+            
             player = 0
+            return(player)
         }
     }
+    
+
+    
     
 }
 game()
