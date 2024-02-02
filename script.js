@@ -8,37 +8,15 @@ function player(name, score) {
 const player1 = new player("John", 13)
 
 function gameBoard () {
-    const container = document.querySelector("#container")
     const array = [
         ["", "", ""],
         ["", "", ""], 
         ["", "", ""],
     ]
-    for(let i = 0; i < array.length; i++) {
-        const element = array[i]
-        for(let i = 1; i < element.length; i++) {
-            const cell = document.createElement('button')
-            cell.classList = "cell"
-            container.appendChild(cell)
-            cell.addEventListener("click", () => {
-                if(player == 0) {
-                    cell.innerHTML = "X"
-                    player = 1
-                    
-                } else {
-                    cell.innerHTML = "0"
-                    player = 0
-                    return(player)
-                }
-                
-                      
-            })
-            
-        }
-    }
-    
     return(array)
 }
+
+
 
 
 
@@ -67,24 +45,41 @@ function game() {
         }
         return(result)
     }
-    const player = 0
-    function switchPlayers() {
-        if(player == 0) {
-            
-            player = 1
-            return(player)
-        } else {
-            
-            player = 0
-            return(player)
+
+    function render() {
+        let num = 0
+        for(let i = 0; i < array.length; i++) {
+            const element = array[i]
+            for(let i = 0; i < element.length; i++) {
+                const cell = document.createElement('button')
+                cell.classList = "cell"
+                cell.id = "button" + num++
+                container.appendChild(cell)
+                cell.addEventListener("click", () => {
+                    if(player == 0) {
+                        cell.innerHTML = "X"
+                        player = 1
+                        
+                    } else {
+                        cell.innerHTML = "0"
+                        player = 0
+                        
+                    }
+                    
+                          
+                })
+                
+            }
         }
     }
-    
 
     
-    
+
+    return {checkWinner, render}
 }
-game()
+const childFunctions = game()
 
+childFunctions.checkWinner();
+childFunctions.render()
 
 
