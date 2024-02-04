@@ -23,20 +23,17 @@ function game() {
         let result = false
 
         /*For rows*/
-        if(array[0][0] != "" && array[0][0] == array[0][1] && array[0][0] == array[0][2]) {
-            result = true
-        } else if (array[1][0] != "" && array[1][0] == array[1][1] && array[1][0] == array[1][2]){
-            result = true
-        } else if (array[2][0] != "" && array[2][0] == array[2][1] && array[2][0] == array[2][2]) {
-            result = true
+        for(let i = 0; i < 3; i++) {
+            if(array[0][i] != "" && array[1][i] == array[0][i] && array[2][i] == array[0][i]){
+                result = true
+            }
         }
         /* For columns*/
-        if(array[0][0] != "" && array[0][0] == array [1][0] && array[0][0] == array[2][0]) {
-            result = true
-        } else if (array[0][1] != "" && array[0][1] == array [1][1] && array[0][1] == array[2][1]) {
-            result = true
-        } else if (array[0][2] != "" && array[0][2] == array [1][1] && array[0][2] == array[2][1]) {
-            result = true
+        for(let i = 0; i < 3; i++) {
+            if(array[i][0] != "" && array[i][1] == array[i][0] && array[i][2] == array[i][0]){
+                result = true
+            }
+
         }
         /* For diagnoals*/
         if(array[0][0] != "" && array[0][0] == array[1][1] && array[0][0] == array[2][2]) {
@@ -44,7 +41,9 @@ function game() {
         } else if (array[2][0] != "" && array[2][0] == array[1][1] && array[2][0] == array[0][2]) {
             result = true
         }
+        console.log(result)
         return(result)
+        
     }
 
     function render() {
@@ -82,12 +81,18 @@ function game() {
             currentPlayer = (currentPlayer === "X") ? "O" : "X";
         }
         function changePlayer() {
-            this.innerHTML = currentPlayer;
-            switchPlayer();
+            if(this.innerHTML == ""){
+                this.innerHTML = currentPlayer;
+                switchPlayer();
+            } else {
+                console.log("This spot is taken")
+            }
+            
         }
         for(let i = 0; i < cell.length; i++) {
             cell[i].addEventListener("click", changePlayer) 
             cell[i].addEventListener("click", link)
+            cell[i].addEventListener("click", checkWinner)
         }
         
     }
