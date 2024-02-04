@@ -4,7 +4,6 @@ function player(name, score) {
     this.score = score;
 
 }
-
 const player1 = new player("John", 13)
 
 function gameBoard () {
@@ -33,7 +32,6 @@ function game() {
             if(array[i][0] != "" && array[i][1] == array[i][0] && array[i][2] == array[i][0]){
                 result = true
             }
-
         }
         /* For diagnoals*/
         if(array[0][0] != "" && array[0][0] == array[1][1] && array[0][0] == array[2][2]) {
