@@ -127,6 +127,10 @@ function display() {
         player1.value = ""
         player2.value = ""
         resetBoard()
+        const gameFunc = game()
+        gameFunc.render()
+        gameFunc.marker()
+        gameFunc.checkWinner();
         dialog.showModal();
     });
 
@@ -143,6 +147,7 @@ function display() {
     
     function resetBoard() {
         const cells = document.querySelectorAll('.cell');
+        
 
     
         for (let row = 0; row < array.length; row++) {
@@ -150,8 +155,9 @@ function display() {
                 array[row][col] = "";
             }
         }
-        cells.forEach((cell) => {
-            cell.innerHTML = "";
+        cells.forEach(function(cell) {
+            cell.parentNode.removeChild(cell)
+            
         });
     }
     
@@ -159,12 +165,10 @@ function display() {
 
 
 
-const gameFunc = game()
+
 
 display()
-gameFunc.render()
-gameFunc.marker()
-gameFunc.checkWinner();
+
 
 
 
