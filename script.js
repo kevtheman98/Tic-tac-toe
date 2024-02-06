@@ -4,20 +4,16 @@ function player(name, score) {
     this.score = score;
 
 }
-const player1 = new player("John", 13)
 
-function gameBoard () {
-    const array = [
-        ["", "", ""],
-        ["", "", ""], 
-        ["", "", ""],
-    ]
-    return(array)
-}
+
+const array = [
+    ["", "", ""],
+    ["", "", ""], 
+    ["", "", ""],
+]
 
 function game() {
-    const array = gameBoard();
-    
+
     function checkWinner() {
         let result = false
 
@@ -48,7 +44,7 @@ function game() {
         let num = 0
         for(let i = 0; i < array.length; i++) {
             const element = array[i]
-            for(let i = 0; i < element.length; i++) {
+            for(let j = 0; j < element.length; j++) {
                 const cell = document.createElement('button')
                 cell.classList = "cell"
                 cell.id = num++
@@ -81,6 +77,11 @@ function game() {
         function changePlayer() {
             if(this.innerHTML == ""){
                 this.innerHTML = currentPlayer;
+                if(currentPlayer === "X") {
+                    document.querySelector(".player").innerHTML = player2.value
+                } else{
+                    document.querySelector(".player").innerHTML = player1.value
+                }
                 switchPlayer();
             } else {
                 console.log("This spot is taken")
@@ -97,12 +98,64 @@ function game() {
 
     return {checkWinner, render, marker}
 }
-const childFunctions = game()
 
-childFunctions.render()
-childFunctions.marker()
+function display() {
 
-childFunctions.checkWinner();
+    
+    const dialog = document.querySelector("dialog");
+    const showButton = document.querySelector(".startBtn");
+    const closeButton = document.querySelector(".closeBtn");
+    const player1 = document.querySelector("#player1")
+    const player2 = document.querySelector("#player2")
+    const confirmBtn = document.querySelector(".confirmBtn")
+
+    showButton.addEventListener("click", () => {
+    resetBoard()
+    dialog.showModal();
+
+    });
+
+    closeButton.addEventListener("click", () => {
+    dialog.close();
+    });
+
+    confirmBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        document.querySelector(".player").innerHTML = player1.value
+        resetBoard()
+        console.log(array)
+        dialog.close();
+        
+    })
+    
+    function resetBoard() {
+        const cells = document.querySelectorAll('.cell');
+
+    
+        for (let row = 0; row < array.length; row++) {
+            for (let col = 0; col < array[row].length; col++) {
+                array[row][col] = "";
+            }
+        }
+
+
+        cells.forEach((cell) => {
+            cell.innerHTML = "";
+        });
+    }
+    
+}
+
+
+
+const gameFunc = game()
+
+
+gameFunc.render()
+gameFunc.marker()
+gameFunc.checkWinner();
+display()
+
 
 
 
