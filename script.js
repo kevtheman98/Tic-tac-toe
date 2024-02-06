@@ -91,14 +91,25 @@ function game() {
         for(let i = 0; i < cell.length; i++) {
             cell[i].addEventListener("click", changePlayer) 
             cell[i].addEventListener("click", link)
-            cell[i].addEventListener("click", checkWinner)
+            cell[i].addEventListener("click", function() {
+                result = checkWinner()
+                if(result == true) {
+                    if(playerName.innerHTML == player1.value){
+                        playerName.innerHTML = "Player 2 " + player2.value + " has won the game"
+                    } else {
+                        playerName.innerHTML = "Player 1 " + player1.value + " has won the game"
+                    }
+                    
+                    
+                }
+            })
         }
         
     }
 
     return {checkWinner, render, marker}
 }
-
+const playerName = document.querySelector(".player")
 function display() {
 
     
@@ -108,7 +119,7 @@ function display() {
     const player1 = document.querySelector("#player1")
     const player2 = document.querySelector("#player2")
     const confirmBtn = document.querySelector(".confirmBtn")
-    const playerName = document.querySelector(".player")
+    
 
     
 
@@ -150,11 +161,11 @@ function display() {
 
 const gameFunc = game()
 
-
+display()
 gameFunc.render()
 gameFunc.marker()
 gameFunc.checkWinner();
-display()
+
 
 
 
