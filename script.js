@@ -108,22 +108,24 @@ function display() {
     const player1 = document.querySelector("#player1")
     const player2 = document.querySelector("#player2")
     const confirmBtn = document.querySelector(".confirmBtn")
+    const playerName = document.querySelector(".player")
+
+    
 
     showButton.addEventListener("click", () => {
-    resetBoard()
-    dialog.showModal();
-
+        player1.value = ""
+        player2.value = ""
+        resetBoard()
+        dialog.showModal();
     });
 
     closeButton.addEventListener("click", () => {
-    dialog.close();
+        dialog.close();
     });
 
     confirmBtn.addEventListener("click", (event) => {
         event.preventDefault();
-        document.querySelector(".player").innerHTML = player1.value
-        resetBoard()
-        console.log(array)
+        playerName.innerHTML = player1.value
         dialog.close();
         
     })
@@ -137,8 +139,6 @@ function display() {
                 array[row][col] = "";
             }
         }
-
-
         cells.forEach((cell) => {
             cell.innerHTML = "";
         });
