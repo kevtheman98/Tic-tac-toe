@@ -49,8 +49,6 @@ function game() {
                 cell.classList = "cell"
                 cell.id = num++
                 container.appendChild(cell)
-                
-                
             }
         }
     }
@@ -120,14 +118,15 @@ function display() {
     const player2 = document.querySelector("#player2")
     const confirmBtn = document.querySelector(".confirmBtn")
     
-
+    const gameFunc = game()
+    gameFunc.render()
     
 
     showButton.addEventListener("click", () => {
         player1.value = ""
         player2.value = ""
         resetBoard()
-        const gameFunc = game()
+        
         gameFunc.render()
         gameFunc.marker()
         gameFunc.checkWinner();
@@ -148,8 +147,6 @@ function display() {
     function resetBoard() {
         const cells = document.querySelectorAll('.cell');
         
-
-    
         for (let row = 0; row < array.length; row++) {
             for (let col = 0; col < array[row].length; col++) {
                 array[row][col] = "";
@@ -160,12 +157,9 @@ function display() {
             
         });
     }
+
     
 }
-
-
-
-
 
 display()
 

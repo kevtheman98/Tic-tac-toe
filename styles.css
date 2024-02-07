@@ -3,6 +3,8 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
+    background-color: #393e46;
+    color: #ffffff;
     
 }
 
@@ -27,17 +29,29 @@ body {
 
 .title,
 .startBtn{
-    height: 20px;
+    height:fit-content;
 }
+
 
 
 #container {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
+    background-color: #fafafa;
+    grid-gap: 5px;
 
 }
 
 div {
     height: 200px;
+}
+
+.cell {
+    background-color: #38598b;
+    color: white;
+}
+
+dialog{
+    background-color: #7a818f;
 }
